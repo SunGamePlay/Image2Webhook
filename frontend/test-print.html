@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>print-test</title>
+<link rel="stylesheet" href="/src/index.css" />
+<script type="module">
+import * as Fixed from '/src/features/forms/modules/fixed-standard.js';
+
+const sample = {
+  header: { formCode: 'BO', topRightBox: 'Z' },
+  orderInfo: { orderNo: 'R0B - R188', arrivalDate: '10/23' },
+  toothChartSection: {
+    quadrants: { upperRight: '', upperLeft: '6', lowerRight: '', lowerLeft: '' },
+    pCount: '1', mCount: 'M',
+    ponticDesign: { saddleType: true, unilateralType: false },
+    barcode: 'R0B-R188'
+  },
+  stainingAndWeight: { staining: { light: true }, openBiteMm: { mm07: true } },
+  shadeAndRequirements: { shade: 'A2', pictureViewed: true, orderRequirements: 'test' },
+  attachments: { upperJaw: true }
+};
+
+const host = document.createElement('div');
+host.className = 'form-host active-form form-fixed';
+host.id = 'activeFormSheetContainer';
+host.innerHTML = Fixed.render();
+document.body.appendChild(host);
+Fixed.populate(host, sample);
+Fixed.init(host, function () {});
+</script>
+</head>
+<body>
+<div style="height:200px;background:#ddd;">screen-only spacer content</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+@import './styles/forms-common.css';
+@import './styles/forms-studio.css';
+@import './styles/print.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: #F8F5EE;
+  --surface: #FFFFFF;
+  --accent: #E25C1D;
+  --accent-hover: #C74E13;
+  --tint: #FBECE3;
+  --ink: #262320;
+  --muted: #7C7670;
+  --line: #EAE6DF;
+  --error: #B42318;
+  --error-bg: #FCECEA;
+  --ok: #1B7A4A;
+  --ok-bg: #E8F6EE;
+  --warn: #9A6700;
+  --warn-bg: #FFF6E0;
+}
+
+body {
+  display: block;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}

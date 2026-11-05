@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>export-test</title>
+<link rel="stylesheet" href="/src/styles/forms-common.css" />
+<script type="module">
+import html2canvas from 'html2canvas';
+import * as Fixed from '/src/features/forms/modules/fixed-standard.js';
+
+const sample = {
+  header: { formCode: 'BO', topRightBox: 'Z' },
+  orderInfo: { orderNo: 'R0B - R188', arrivalDate: '10/23' },
+  toothChartSection: {
+    quadrants: { upperRight: '', upperLeft: '6', lowerRight: '', lowerLeft: '' },
+    pCount: '1', mCount: 'M',
+    ponticDesign: { saddleType: true, unilateralType: false },
+    barcode: 'R0B-R188'
+  },
+  stainingAndWeight: { staining: { light: true }, openBiteMm: { mm07: true } },
+  shadeAndRequirements: { shade: 'A2', pictureViewed: true, orderRequirements: 'oxidation test' },
+  attachments: { upperJaw: true }
+};
+
+const host = document.createElement('div');
+host.className = 'form-host active-form form-fixed';
+host.innerHTML = Fixed.render();
+document.body.appendChild(host);
+Fixed.populate(host, sample);
+Fixed.init(host, function () {});
+
+const sheet = host.querySelector('.form-sheet');
+const rows = sheet.querySelectorAll('.main-grid > .row');
+
+const results = [];
+
+async function probe(el) {
+  try {
+    await html2canvas(el, { scale: 1, backgroundColor: '#ffffff' });
+    return 'OK';
+  } catch (e) {
+    return 'ERR ' + (e && e.message);
+  }
+}
+
+setTimeout(async function () {
+  for (const rIdx of [4, 5, 8]) {
+    const row = rows[rIdx];
+    const els = [row].concat(Array.from(row.querySelectorAll('*')));
+    for (const el of els) {
+      const r = await probe(el);
+      if (r !== 'OK') {
+        results.push('row' + rIdx + ' :: ' + el.tagName + ' #' + el.id + '.' + el.className + ' => ' + r);
+      }
+    }
+  }
+  const out = document.getElementById('out');
+  out.textContent = results.join('\n') || 'none failed?!';
+  document.title = 'DONE';
+}, 1000);
+</script>
+</head>
+<body>
+<pre id="out">running...</pre>
+</body>
+</html>

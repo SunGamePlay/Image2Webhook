@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>export-test</title>
+<style>
+.box { border: 1px solid #ccc; margin: 8px; padding: 8px; }
+.t2 input, .t3 input, .t4 input {
+  appearance: none; -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border: 1.2px solid #2c3e50;
+  background: transparent;
+  display: inline-grid; place-content: center;
+  cursor: pointer; margin: 0;
+}
+.t3 input:checked, .t4 input:checked { background-color: #1b3b8c; border-color: #1b3b8c; }
+.t4 input:checked::after { content: "\2713"; color: white; font-size: 11px; font-weight: bold; }
+</style>
+<script type="module">
+import html2canvas from 'html2canvas';
+
+function report(id, msg) {
+  const el = document.getElementById('out-' + id);
+  if (el) el.textContent = String(msg).slice(0, 500);
+}
+
+async function probe(id, el) {
+  try {
+    await html2canvas(el, { scale: 1, backgroundColor: '#ffffff' });
+    report(id, 'OK');
+  } catch (e) {
+    report(id, 'ERR ' + ((e && e.message) + ' | ' + (e && e.stack)));
+  }
+}
+
+setTimeout(async function () {
+  await probe('plain', document.getElementById('t1'));
+  await probe('unstyled-checked', document.getElementById('t1c'));
+  await probe('custom-unchecked', document.getElementById('t2'));
+  await probe('custom-checked-noafter', document.getElementById('t3'));
+  await probe('custom-checked-after', document.getElementById('t4'));
+  document.title = 'DONE';
+}, 300);
+</script>
+</head>
+<body>
+<div class="box" id="t1">plain checkbox</div>
+<div class="box" id="t1c">plain checked checkbox <input type="checkbox" checked /></div>
+<div class="box t2" id="t2">custom unchecked <input type="checkbox" /></div>
+<div class="box t3" id="t3">custom checked noafter <input type="checkbox" checked /></div>
+<div class="box t4" id="t4">custom checked after <input type="checkbox" checked /></div>
+<pre>
+plain: <span id="out-plain">...</span>
+unstyled-checked: <span id="out-unstyled-checked">...</span>
+custom-unchecked: <span id="out-custom-unchecked">...</span>
+custom-checked-noafter: <span id="out-custom-checked-noafter">...</span>
+custom-checked-after: <span id="out-custom-checked-after">...</span>
+</pre>
+</body>
+</html>

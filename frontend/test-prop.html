@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+.chkB { appearance: none; -webkit-appearance: none; width: 13px; height: 13px;
+  border: 1.2px solid #2c3e50; background: transparent;
+  display: inline-grid; place-content: center; margin: 0; }
+.chkB:checked { background-color: #1b3b8c; }
+.chkB:checked::after { content: "x"; color: white; font-size: 11px; font-weight: bold; }
+.divA { display: inline-block; width: 13px; height: 13px; }
+.divA::after { content: "x"; }
+</style>
+<script type="module">
+function dumpPseudo(el, pseudo) {
+  const cs = getComputedStyle(el, pseudo);
+  const empty = [];
+  for (let i = 0; i < cs.length; i++) {
+    const name = cs[i];
+    if (cs.getPropertyValue(name) === '') empty.push(name);
+  }
+  return empty;
+}
+const inp = document.getElementById('chk');
+const div = document.getElementById('d');
+setTimeout(function () {
+  document.getElementById('out').textContent =
+    'input empty: ' + JSON.stringify(dumpPseudo(inp, '::after')) +
+    '\ndiv empty: ' + JSON.stringify(dumpPseudo(div, '::after'));
+  document.title = 'DONE';
+}, 200);
+</script>
+</head>
+<body>
+<input type="checkbox" id="chk" class="chkB" checked />
+<span id="d" class="divA"></span>
+<pre id="out">running</pre>
+</body>
+</html>

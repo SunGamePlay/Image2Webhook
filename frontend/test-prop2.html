@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+.chkB { appearance: none; -webkit-appearance: none; width: 13px; height: 13px;
+  border: 1.2px solid #2c3e50; background: transparent;
+  display: inline-grid; place-content: center; margin: 0; }
+.chkB:checked { background-color: #1b3b8c; }
+.chkB:checked::after { content: "x"; color: white; font-size: 11px; font-weight: bold; }
+.divA { display: inline-block; width: 13px; height: 13px; }
+.divA::after { content: "x"; }
+</style>
+<script type="module">
+const inp = document.getElementById('chk');
+const div = document.getElementById('d');
+setTimeout(function () {
+  const a1 = getComputedStyle(inp, '::after');
+  const a2 = getComputedStyle(div, '::after');
+  const props = ['content','display','position','float','width','height','margin','padding','border','box-shadow','text-shadow','background','color','font-family','font-size','z-index','transform','transition-property'];
+  const rows = props.map(p => p.padEnd(20) + ' | input: ' + a1.getPropertyValue(p) + ' | div: ' + a2.getPropertyValue(p));
+  document.getElementById('out').textContent = rows.join('\n');
+  document.title = 'DONE';
+}, 200);
+</script>
+</head>
+<body>
+<input type="checkbox" id="chk" class="chkB" checked />
+<span id="d" class="divA"></span>
+<pre id="out">running</pre>
+</body>
+</html>

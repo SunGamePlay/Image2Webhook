@@ -1,0 +1,12 @@
+.git
+.venv
+__pycache__
+*.pyc
+.env
+data/
+*.md
+*.xlsx
+.DS_Store
+.idea/
+*.iml
+frontend/node_modules/

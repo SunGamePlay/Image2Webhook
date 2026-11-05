@@ -1,0 +1,807 @@
+/* =========================================================================
+   Forms Common Styles: Forms 1, 2, 3, 4
+   ========================================================================= */
+
+/* Center all form sheets and allow natural content height */
+.form-sheet {
+  margin: 0 auto;
+  box-sizing: border-box;
+  height: auto;
+  min-height: max-content;
+}
+
+.form-host.form-fixed.active-form,
+.form-host.form-removable.active-form,
+.form-host.form-fixed-simple.active-form,
+.form-host.form-removable-simple.active-form {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  width: 100%;
+  height: auto !important;
+}
+
+.form-fixed .form-sheet,
+.form-removable .form-sheet,
+.form-fixed-simple .form-sheet,
+.form-removable-simple .form-sheet {
+  height: auto !important;
+}
+
+/* =========================================================================
+   FORM 1: 固定技工單 (簡) - Fixed Simple
+   ========================================================================= */
+.form-fixed-simple {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+}
+
+.form-fixed-simple .form-sheet {
+  width: 820px;
+  background: #ffffff;
+  padding: 32px 28px 36px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.form-fixed-simple .form-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: #000000;
+  user-select: none;
+}
+
+.form-fixed-simple .main-grid {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border: 1px solid #9e9e9e;
+}
+
+.form-fixed-simple .main-grid td {
+  border: 1px solid #9e9e9e;
+  height: 46px;
+  padding: 4px 12px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.form-fixed-simple .label-cell {
+  width: 25%;
+  font-size: 17px;
+  font-weight: 500;
+  color: #000000;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.form-fixed-simple .input-cell {
+  width: 25%;
+  padding: 0 !important;
+}
+
+.form-fixed-simple .cell-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #1b3b8c;
+  padding: 6px 12px;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.form-fixed-simple .cell-input:focus {
+  background-color: rgba(27, 59, 140, 0.04);
+}
+
+/* =========================================================================
+   FORM 2: 活動技工單 (簡) - Removable Simple
+   ========================================================================= */
+.form-removable-simple {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+}
+
+.form-removable-simple .form-sheet {
+  width: 880px;
+  background: #ffffff;
+  padding: 32px 28px 36px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.form-removable-simple .form-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: #000000;
+  user-select: none;
+}
+
+.form-removable-simple .main-grid {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border: 1px solid #9e9e9e;
+}
+
+.form-removable-simple .main-grid td {
+  border: 1px solid #9e9e9e;
+  height: 46px;
+  padding: 4px 12px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.form-removable-simple .label-cell {
+  font-size: 17px;
+  font-weight: 500;
+  color: #000000;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.form-removable-simple .input-cell {
+  padding: 0 !important;
+}
+
+.form-removable-simple .cell-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #1b3b8c;
+  padding: 6px 12px;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.form-removable-simple .cell-input:focus {
+  background-color: rgba(27, 59, 140, 0.04);
+}
+
+.form-removable-simple .radio-cell {
+  padding: 4px 10px !important;
+}
+
+.form-removable-simple .radio-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.form-removable-simple .radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000000;
+  user-select: none;
+}
+
+.form-removable-simple .radio-label input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #666;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+  margin: 0;
+}
+
+.form-removable-simple .radio-label input[type="radio"]:checked {
+  border-color: #1b3b8c;
+}
+
+.form-removable-simple .radio-label input[type="radio"]:checked::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #1b3b8c;
+}
+
+/* =========================================================================
+   FORM 3: 珠海拜瑞 - 固定技工單 (Fixed Standard Chinese Order)
+   ========================================================================= */
+.form-fixed {
+  --border-red: #b83227;
+  --text-dark: #1e272e;
+  --fill-blue: #1b3b8c;
+  --paper-bg: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  font-family: "SimSun", "Songti SC", "Noto Serif SC", "Microsoft YaHei", sans-serif;
+  color: var(--text-dark);
+}
+
+.form-fixed .form-sheet {
+  width: 780px;
+  background: var(--paper-bg);
+  padding: 24px 28px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  box-sizing: border-box;
+}
+
+/* Top Header */
+.form-fixed .top-header {
+  display: grid;
+  grid-template-columns: 200px 1fr 240px;
+  align-items: stretch;
+  margin-bottom: 4px;
+}
+
+.form-fixed .header-box-left {
+  border: 2px solid var(--border-red);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 2px 14px;
+  height: 76px;
+  box-sizing: border-box;
+}
+
+.form-fixed .header-box-left input {
+  width: 100%;
+  height: 100%;
+  font-size: 58px;
+  line-height: 1.1;
+  font-weight: 800;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2b3a4a;
+  border: none;
+  background: transparent;
+  outline: none;
+  letter-spacing: 2px;
+}
+
+.form-fixed .header-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 23px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: #2b3a4a;
+  line-height: 1.35;
+  user-select: none;
+}
+
+.form-fixed .header-box-right {
+  border: 2px solid var(--border-red);
+  border-radius: 14px 14px 14px 0;
+  height: 92px;
+  margin-bottom: -16px;
+  z-index: 2;
+  background: var(--paper-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.form-fixed .top-right-input {
+  width: 100%;
+  height: 100%;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--fill-blue);
+  text-align: center;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+/* Main Grid */
+.form-fixed .main-grid {
+  border: 2px solid var(--border-red);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-fixed .row {
+  display: flex;
+  width: 100%;
+  border-bottom: 1.5px solid var(--border-red);
+  box-sizing: border-box;
+}
+
+.form-fixed .row:last-child {
+  border-bottom: none;
+}
+
+.form-fixed .cell {
+  border-right: 1.5px solid var(--border-red);
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.form-fixed .cell:last-child {
+  border-right: none;
+}
+
+.form-fixed .label-red {
+  color: var(--border-red);
+  font-weight: bold;
+}
+
+.form-fixed .label-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 2px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.2;
+  padding: 2px;
+  user-select: none;
+}
+
+.form-fixed .line-input {
+  border: none;
+  border-bottom: 1px solid #333;
+  background: transparent;
+  font-size: 15px;
+  color: var(--fill-blue);
+  padding: 0 4px;
+  outline: none;
+}
+
+.form-fixed .cell-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: var(--fill-blue);
+  outline: none;
+  padding: 2px 4px;
+  box-sizing: border-box;
+}
+
+/* Checkboxes */
+.form-fixed .chk-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  margin-right: 8px;
+  font-size: 14px;
+  user-select: none;
+  padding: 1px 3px;
+}
+
+.form-fixed .chk-label input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  border: 1.2px solid #2c3e50;
+  background: transparent;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  margin: 0;
+}
+
+.form-fixed .chk-label input[type="checkbox"]:checked {
+  background-color: var(--fill-blue);
+  border-color: var(--fill-blue);
+}
+
+.form-fixed .chk-label input[type="checkbox"]:checked::after {
+  content: "✓";
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* Tooth Cross */
+.form-fixed .tooth-cross-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 8px;
+  box-sizing: border-box;
+}
+
+.form-fixed .tooth-cross {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 34px 34px;
+  width: 88%;
+  margin: 0 auto;
+}
+
+.form-fixed .tooth-quad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-fixed .tooth-quad:nth-child(1) {
+  border-right: 1.5px solid #2c3e50;
+  border-bottom: 1.5px solid #2c3e50;
+}
+
+.form-fixed .tooth-quad:nth-child(2) {
+  border-bottom: 1.5px solid #2c3e50;
+}
+
+.form-fixed .tooth-quad:nth-child(3) {
+  border-right: 1.5px solid #2c3e50;
+}
+
+.form-fixed .tooth-quad input {
+  width: 90%;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--fill-blue);
+  outline: none;
+}
+
+.form-fixed .pm-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding: 0 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Pontic Design */
+.form-fixed .pontic-cell {
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 6px 4px;
+}
+
+.form-fixed .pontic-options {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+}
+
+.form-fixed .pontic-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 3px 5px;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.form-fixed .pontic-item.active {
+  outline: 2px solid var(--fill-blue);
+  background: rgba(27, 59, 140, 0.08);
+}
+
+/* Barcode Area */
+.form-fixed .barcode-area-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.form-fixed .barcode-input {
+  border: none;
+  border-bottom: 1px dashed #aaa;
+  background: transparent;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text-dark);
+  letter-spacing: 1.5px;
+  width: 150px;
+  outline: none;
+}
+
+/* Order Requirements Box */
+.form-fixed .order-req-box {
+  border: 1.5px solid #2c3e50;
+  width: 100%;
+  height: 78px;
+  padding: 4px 6px;
+  font-size: 12.5px;
+  line-height: 1.42;
+  background: transparent;
+  resize: none;
+  outline: none;
+  color: var(--fill-blue);
+  font-family: "SimSun", serif;
+  box-sizing: border-box;
+}
+
+/* =========================================================================
+   FORM 4: 珠海拜瑞 - 活動技工單 (Removable Standard Chinese Order)
+   ========================================================================= */
+.form-removable {
+  --border-black: #22252a;
+  --text-dark: #1e272e;
+  --fill-blue: #1b3b8c;
+  --paper-bg: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  font-family: "SimSun", "Songti SC", "Noto Serif SC", "Microsoft YaHei", sans-serif;
+  color: var(--text-dark);
+}
+
+.form-removable .form-sheet {
+  width: 780px;
+  background: var(--paper-bg);
+  padding: 24px 28px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  box-sizing: border-box;
+}
+
+/* Top Header */
+.form-removable .top-header {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  margin-bottom: 6px;
+}
+
+.form-removable .header-box-left {
+  width: 155px;
+  height: 52px;
+  border: 1.5px solid var(--border-black);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px;
+  box-sizing: border-box;
+}
+
+.form-removable .header-box-left input {
+  width: 100%;
+  font-size: 42px;
+  font-weight: 800;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--fill-blue);
+  text-align: center;
+  border: none;
+  background: transparent;
+  outline: none;
+  letter-spacing: 2px;
+}
+
+.form-removable .header-title {
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: var(--text-dark);
+  padding-bottom: 6px;
+  user-select: none;
+}
+
+/* Main Grid */
+.form-removable .main-grid {
+  border: 2px solid var(--border-black);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-removable .row {
+  display: flex;
+  width: 100%;
+  border-bottom: 1.5px solid var(--border-black);
+  box-sizing: border-box;
+}
+
+.form-removable .row:last-child {
+  border-bottom: none;
+}
+
+.form-removable .cell {
+  border-right: 1.5px solid var(--border-black);
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: 14px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.form-removable .cell:last-child {
+  border-right: none;
+}
+
+.form-removable .label-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 2px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.15;
+  user-select: none;
+}
+
+.form-removable .line-input {
+  border: none;
+  border-bottom: 1px solid var(--border-black);
+  background: transparent;
+  font-size: 15px;
+  color: var(--fill-blue);
+  padding: 0 4px;
+  outline: none;
+}
+
+.form-removable .cell-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: var(--fill-blue);
+  outline: none;
+  padding: 2px 4px;
+  box-sizing: border-box;
+}
+
+/* Checkboxes */
+.form-removable .chk-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  user-select: none;
+}
+
+.form-removable .chk-label input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  border: 1.3px solid var(--border-black);
+  background: transparent;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  margin: 0;
+}
+
+.form-removable .chk-label input[type="checkbox"]:checked {
+  background-color: var(--fill-blue);
+  border-color: var(--fill-blue);
+}
+
+.form-removable .chk-label input[type="checkbox"]:checked::after {
+  content: "✓";
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* Tooth Cross */
+.form-removable .tooth-cross {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+  height: 100%;
+}
+
+.form-removable .tooth-quad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-removable .tooth-quad:nth-child(1) {
+  border-right: 1.2px solid var(--border-black);
+  border-bottom: 1.2px solid var(--border-black);
+}
+
+.form-removable .tooth-quad:nth-child(2) {
+  border-bottom: 1.2px solid var(--border-black);
+}
+
+.form-removable .tooth-quad:nth-child(3) {
+  border-right: 1.2px solid var(--border-black);
+}
+
+.form-removable .tooth-quad input {
+  width: 92%;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--fill-blue);
+  outline: none;
+}
+
+/* Clasp Cross Rows */
+.form-removable .clasp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px;
+  height: 46px;
+  border-bottom: 1.2px dashed var(--border-black);
+  font-size: 14px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.form-removable .clasp-row.solid-bottom {
+  border-bottom: 1.5px solid var(--border-black);
+}
+
+.form-removable .clasp-cross {
+  width: 135px;
+  height: 34px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+/* Barcode Area */
+.form-removable .barcode-area-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.form-removable .barcode-input {
+  border: none;
+  border-bottom: 1px dashed #999;
+  background: transparent;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text-dark);
+  letter-spacing: 1.5px;
+  width: 160px;
+  outline: none;
+}

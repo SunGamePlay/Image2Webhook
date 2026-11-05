@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>export-test</title>
+<link rel="stylesheet" href="/src/styles/forms-common.css" />
+<script type="module">
+import html2canvas from 'html2canvas';
+import * as Fixed from '/src/features/forms/modules/fixed-standard.js';
+
+const sample = {
+  header: { formCode: 'BO', topRightBox: 'Z' },
+  orderInfo: { orderNo: 'R0B - R188', arrivalDate: '10/23' },
+  toothChartSection: {
+    quadrants: { upperRight: '', upperLeft: '6', lowerRight: '', lowerLeft: '' },
+    pCount: '1', mCount: 'M',
+    ponticDesign: { saddleType: true, unilateralType: false },
+    barcode: 'R0B-R188'
+  },
+  stainingAndWeight: { staining: { light: true }, openBiteMm: { mm07: true } },
+  shadeAndRequirements: { shade: 'A2', pictureViewed: true, orderRequirements: 'oxidation test' },
+  attachments: { upperJaw: true }
+};
+
+function report(id, msg) {
+  const el = document.getElementById('out-' + id);
+  if (el) el.textContent = String(msg).slice(0, 400);
+}
+
+function host3() {
+  const host = document.createElement('div');
+  host.className = 'form-host active-form form-fixed';
+  host.innerHTML = Fixed.render();
+  document.body.appendChild(host);
+  Fixed.populate(host, sample);
+  Fixed.init(host, function () {});
+  return host;
+}
+
+async function probe(name, el) {
+  try {
+    await html2canvas(el, { scale: 1, backgroundColor: '#ffffff' });
+    report(name, 'OK');
+  } catch (e) {
+    report(name, 'ERR ' + (e && e.message));
+  }
+}
+
+const host = host3();
+const sheet = host.querySelector('.form-sheet');
+const parts = [
+  ['sheet', sheet],
+  ['top-header', sheet.querySelector('.top-header')]
+];
+sheet.querySelectorAll('.main-grid > .row').forEach((r, i) => parts.push(['row' + i, r]));
+
+setTimeout(async function () {
+  for (const [name, el] of parts) {
+    if (el) await probe(name, el);
+  }
+  // cell-level bisect on failing rows
+  const rows = sheet.querySelectorAll('.main-grid > .row');
+  [4, 5, 8].forEach((ri) => {
+    const cells = rows[ri].children;
+    for (let ci = 0; ci < cells.length; ci++) {
+      probe('r' + ri + 'c' + ci, cells[ci]);
+    }
+  });
+  setTimeout(() => { document.title = 'DONE2'; }, 8000);
+}, 1000);
+</script>
+</head>
+<body>
+<div id="out-sheet">...</div>
+<div id="out-top-header">...</div>
+<div id="out-row0">...</div>
+<div id="out-row1">...</div>
+<div id="out-row2">...</div>
+<div id="out-row3">...</div>
+<div id="out-row4">...</div>
+<div id="out-row5">...</div>
+<div id="out-row6">...</div>
+<div id="out-row7">...</div>
+<div id="out-row8">...</div>
+</body>
+</html>

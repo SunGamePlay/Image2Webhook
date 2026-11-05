@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>export-test</title>
+<style>
+.box { border: 1px solid #ccc; margin: 8px; padding: 8px; }
+.chk {
+  appearance: none; -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border: 1.2px solid #2c3e50;
+  background: transparent;
+  display: inline-grid; place-content: center;
+  margin: 0;
+}
+.chkA:checked { background-color: #1b3b8c; }
+.chkA:checked::after { content: "x"; color: white; font-size: 11px; font-weight: bold; }
+.chkB:checked { background-color: #1b3b8c; }
+.chkB:checked::after { content: "\2713"; color: white; font-size: 11px; font-weight: bold; }
+.chkC:checked { background-color: #1b3b8c; }
+.chkC:checked::after { content: none; }
+.divA { display: inline-block; width: 13px; height: 13px; }
+.divA::after { content: "\2713"; }
+</style>
+<script type="module">
+import html2canvas from 'html2canvas';
+
+function report(id, msg) {
+  const el = document.getElementById('out-' + id);
+  if (el) el.textContent = String(msg).slice(0, 400);
+}
+
+async function probe(id, el) {
+  try {
+    await html2canvas(el, { scale: 1, backgroundColor: '#ffffff' });
+    report(id, 'OK');
+  } catch (e) {
+    report(id, 'ERR ' + (e && e.message));
+  }
+}
+
+setTimeout(async function () {
+  await probe('ascii-x', document.getElementById('tA'));
+  await probe('unicode-check', document.getElementById('tB'));
+  await probe('none-content', document.getElementById('tC'));
+  await probe('div-pseudo', document.getElementById('tD'));
+  document.title = 'DONE';
+}, 300);
+</script>
+</head>
+<body>
+<div class="box" id="tA">checked chk, content "x": <input type="checkbox" class="chk chkA" checked /></div>
+<div class="box" id="tB">checked chk, content checkmark: <input type="checkbox" class="chk chkB" checked /></div>
+<div class="box" id="tC">checked chk, content none: <input type="checkbox" class="chk chkC" checked /></div>
+<div class="box" id="tD">div with pseudo checkmark: <span class="divA"></span></div>
+<pre>
+ascii-x: <span id="out-ascii-x">...</span>
+unicode-check: <span id="out-unicode-check">...</span>
+none-content: <span id="out-none-content">...</span>
+div-pseudo: <span id="out-div-pseudo">...</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,93 @@
+/* =========================================================================
+   Print Stylesheet: Ensures clean paper print output with only the form sheet
+   ========================================================================= */
+
+@media print {
+    @page {
+        size: auto;
+        margin: 6mm 4mm;
+    }
+
+    html, body {
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Hide Navigation, Topbars, Sidebars, Image Pane, Modals, Buttons */
+    header,
+    nav,
+    aside,
+    button,
+    input[type="file"],
+    .barcode-input,
+    .json-drawer,
+    .toast-container,
+    .modal-backdrop,
+    [role="dialog"],
+    .nav-rail,
+    .topbar-header,
+    .image-sidebar,
+    .comparison-image-pane,
+    .comparison-splitter,
+    .form-tabs-header,
+    .empty-workspace-view {
+        display: none !important;
+    }
+
+    /* Reset shell layout containers only (Never reset .flex or .grid globally, as forms use them) */
+    #root,
+    .app-root-layout,
+    .app-main-content,
+    .comparison-studio-root,
+    .comparison-body-row,
+    .comparison-panes-row,
+    .comparison-form-pane,
+    .form-pane-section,
+    .form-sheet-viewport {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        position: static !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Form Container */
+    #activeFormSheetContainer,
+    .form-host.active-form {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .form-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 auto !important;
+        background: #ffffff !important;
+        max-width: 100% !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+}

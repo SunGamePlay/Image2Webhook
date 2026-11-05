@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>export-test</title>
+<link rel="stylesheet" href="/src/styles/forms-common.css" />
+<script type="module">
+import html2canvas from 'html2canvas';
+import * as Fixed from '/src/features/forms/modules/fixed-standard.js';
+import * as FixedSimple from '/src/features/forms/modules/fixed-simple.js';
+
+const sample = {
+  header: { formCode: 'BO', topRightBox: 'Z' },
+  orderInfo: { orderNo: 'R0B - R188', arrivalDate: '10/23' },
+  toothChartSection: {
+    quadrants: { upperRight: '', upperLeft: '6', lowerRight: '', lowerLeft: '' },
+    pCount: '1', mCount: 'M',
+    ponticDesign: { saddleType: true, unilateralType: false },
+    barcode: 'R0B-R188'
+  },
+  stainingAndWeight: { staining: { light: true }, openBiteMm: { mm07: true } },
+  shadeAndRequirements: { shade: 'A2', pictureViewed: true, orderRequirements: 'oxidation test' },
+  attachments: { upperJaw: true }
+};
+
+function report(id, msg) {
+  const el = document.getElementById('out-' + id);
+  if (el) el.textContent = String(msg).slice(0, 800);
+}
+
+async function test(name, host) {
+  try {
+    const canvas = await html2canvas(host.querySelector('.form-sheet') || host, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+    report(name, 'OK canvas ' + canvas.width + 'x' + canvas.height);
+  } catch (e) {
+    report(name, 'ERROR ' + ((e && e.message) + ' | ' + (e && e.stack)));
+  }
+}
+
+function mount(name, mod, data, hostClass) {
+  const host = document.createElement('div');
+  host.className = hostClass;
+  host.innerHTML = mod.render();
+  document.body.appendChild(host);
+  try {
+    mod.populate(host, data);
+    mod.init(host, function () {});
+    report(name + '-mount', 'OK');
+  } catch (e) {
+    report(name + '-mount', 'ERROR ' + ((e && e.message) + ' | ' + (e && e.stack)));
+  }
+  return host;
+}
+
+const h3 = mount('fixed', Fixed, sample, 'form-host active-form form-fixed');
+const h1 = mount('fixed-simple', FixedSimple, { orderInfo: { clientOrderNo: 'TEST-1', patientName: 'Test Patient' } }, 'form-host active-form form-fixed-simple');
+
+setTimeout(async function () {
+  await test('fixed', h3);
+  await test('fixed-simple', h1);
+  document.title = 'DONE';
+}, 1000);
+</script>
+</head>
+<body>
+<h3>Export test harness</h3>
+<div>fixed-mount: <span id="out-fixed-mount">...</span></div>
+<div>fixed: <span id="out-fixed">...</span></div>
+<div>fixed-simple-mount: <span id="out-fixed-simple-mount">...</span></div>
+<div>fixed-simple: <span id="out-fixed-simple">...</span></div>
+</body>
+</html>

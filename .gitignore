@@ -1,0 +1,13 @@
+data/
+.env
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+.idea/
+*.iml
+node_modules/
+frontend/node_modules/
+frontend/dist/
+.logs/
+*.pid
